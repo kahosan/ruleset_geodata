@@ -59,11 +59,11 @@ jobs:
           curl -sSL "${sougouinput}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/sougouinput"
           curl -sSL "${ai_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/ai"
           curl -sSL "${gemini_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/gemini"
-          curl -sSL "${apple_cdn}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/apple-cdn"
-          curl -sSL "${apple_cn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/apple2cn"
-          curl -sSL "${microsoft_cdn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/microsoft-cdn"
+          curl -sSL "${apple_cdn}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/applecdn"
+          curl -sSL "${apple_cn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/applecn"
+          curl -sSL "${microsoft_cdn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/microsoftcdn"
           curl -sSL "${domestic_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/domestic"
-          curl -sSL "${direct_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/direct-skk"
+          curl -sSL "${direct_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/directskk"
           ls -l ./ruleset/mydata
           
           cd ./ruleset/
