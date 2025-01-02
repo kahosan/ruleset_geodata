@@ -56,15 +56,16 @@ jobs:
         run: |
           mkdir -p ./ruleset/mydata
 
-          curl -sSL "${sougouinput}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/sougouinput"
-          curl -sSL "${ai_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/ai"
-          curl -sSL "${gemini_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/gemini"
-          curl -sSL "${apple_cdn}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/apple@cdn"
-          curl -sSL "${apple_cn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/apple@cn"
-          curl -sSL "${microsoft_cdn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/microsoft@cdn"
-          curl -sSL "${domestic_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/domestic"
-          curl -sSL "${direct_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' > "./ruleset/mydata/direct@skk"
-
+          curl -sSL "${sougouinput}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/sougouinput"
+          curl -sSL "${ai_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/ai"
+          curl -sSL "${gemini_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/gemini"
+          curl -sSL "${apple_cdn}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/apple@cdn"
+          curl -sSL "${apple_cn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/apple@cn"
+          curl -sSL "${microsoft_cdn_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/microsoft@cdn"
+          curl -sSL "${domestic_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/domestic"
+          curl -sSL "${direct_non_ip}" | grep -E 'DOMAIN,|DOMAIN-SUFFIX,|DOMAIN-KEYWORD|\\+\\.' | sed -e 's/^DOMAIN,/full:/' -e 's/^DOMAIN-SUFFIX,//' -e 's/^DOMAIN-KEYWORD,/keyword:/' -e 's/\+\.//' > "./ruleset/mydata/direct@skk"
+          ls ./ruleset/mydata
+          
           cd ./ruleset/
           go run ./ --datapath=./mydata/ --outputname skk.dat
 
@@ -72,9 +73,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          release_name: geodata
-          tag: ${{ github.ref }}
-          overwrite: false
+          release_name: geosite
+          overwrite: true
           body: |
             geodata 文件更新于 ${{ env.update_version }}
           file_glob: false
