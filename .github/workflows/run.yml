@@ -77,7 +77,7 @@ jobs:
           body: |
             geodata 文件更新于 ${{ env.update_version }}
           file_glob: true
-          file: ./ruleset/mydata/skk.dat
+          file: ./ruleset/mydata/*
 
       - name: Delete old workflow runs
         uses: Mattraks/delete-workflow-runs@v2
