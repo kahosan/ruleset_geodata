@@ -73,11 +73,12 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           release_name: geodata
-          overwrite: true
+          tag: ${{ github.ref }}
+          overwrite: false
           body: |
             geodata 文件更新于 ${{ env.update_version }}
-          file_glob: true
-          file: ./ruleset/mydata/*
+          file_glob: false
+          file: ./ruleset/skk.dat
 
       - name: Delete old workflow runs
         uses: Mattraks/delete-workflow-runs@v2
